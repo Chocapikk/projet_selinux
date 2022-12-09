@@ -43,7 +43,7 @@ if [ "$1" == "install" ]; then
   gcc myprogram.c -o myprogram
   
   # Compiler le fichier .te
-  make -f /usr/share/selinux/devel/Makefile mypolicy.pp
+  make -f /usr/share/selinux/devel/Makefile mypolicy.te
 
   # Installer la politique
   semodule -i mypolicy.pp
