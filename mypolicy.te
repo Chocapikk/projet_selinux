@@ -11,7 +11,7 @@ policy_module(mypolicy, 1.0)
 
   type myprogram_file_t;
 
-  init_module(mypolicy)
+  init_module(mypolicy);
 
   allow unconfined_t myprogram_t:file { open read };
 
@@ -19,4 +19,4 @@ policy_module(mypolicy, 1.0)
 
   allow myprogram_t myprogram_file_t:file { open read };
 
-  files_type(myprogram_file_t)
+  files_type(myprogram_file_t);
