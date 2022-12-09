@@ -2,7 +2,7 @@ policy_module(mypolicy, 1.0)
 
   require {
           type unconfined_t;
-          class file { read open };
+          class file { open };
   }
 
   type myprogram_t;
@@ -11,7 +11,7 @@ policy_module(mypolicy, 1.0)
 
   type myprogram_file_t;
 
-  init_module(mypolicy);
+  init_policy(mypolicy);
 
   allow unconfined_t myprogram_t:file { open read };
 
