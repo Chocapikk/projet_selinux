@@ -21,6 +21,13 @@ if ! dpkg -s policycoreutils > /dev/null 2>&1; then
   apt-get install policycoreutils
 fi
 
+# Vérifier si SEModule est déjà installé
+if ! dpkg -s selinux-policy-dev > /dev/null 2>&1; then
+  # Installer SEModule
+  apt-get update
+  apt-get install selinux-policy-dev
+fi
+
 # Vérifier si gcc est déjà installé
 if ! dpkg -s selinux-utils > /dev/null 2>&1; then
   apt-get update 
