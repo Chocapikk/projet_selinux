@@ -11,7 +11,7 @@ fi
 if ! dpkg -s selinux-utils > /dev/null 2>&1; then
   # Installer SELinux
   apt-get update
-  apt-get install selinux-utils
+  apt-get install selinux-utils semodule-utils
 fi
 
 # Vérifier si gcc est déjà installé
