@@ -1,0 +1,21 @@
+policy_module(infinite_loop, 1.0)
+
+require {
+        type unconfined_t;
+        class file { read open };
+}
+
+type infinite_loop_t;
+
+type infinite_loop_exec_t;
+
+type infinite_loop_file_t;
+
+
+allow unconfined_t infinite_loop_t:file { open read };
+
+allow infinite_loop_t infinite_loop_exec_t:file execute;
+
+allow infinite_loop_t infinite_loop_file_t:file { open read };
+
+files_type(infinite_loop_file_t)
