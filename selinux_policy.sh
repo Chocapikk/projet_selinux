@@ -14,11 +14,39 @@ if ! dpkg -s selinux-utils > /dev/null 2>&1; then
   apt-get install selinux-utils
 fi
 
+# Vérifier si gcc est déjà installé
+if ! dpkg -s selinux-utils > /dev/null 2>&1; then
+  apt-get update 
+  apt-get install gcc 
+fi 
+
 # Vérifier si l'option "install" est spécifiée
 if [ "$1" == "install" ]; then
   # Activer SELinux en mode cible
   setenforce 1
+  
+  # Créer un fichier .c 
+  cat << EOF > myprogram.c
+  #include <stdio.h>
 
+  int main(int argc, char *argv[])
+  {
+	  while(1) {
+		  FILE *fp;
+		  char buff[255];    
+		  fp = fopen("file.txt", "r");
+      fscanf(fp, "%s", buff);
+      printf("%s\\n", buff);
+      fclose(fp);
+	  }
+
+  return 0;
+  }
+  EOF
+  
+  # Compiler le fichier myprogram.c
+  gcc myprogram.c -o myprogram
+  
   # Créer un fichier .te
   cat << EOF > mypolicy.te
   policy_module(mypolicy, 1.0)
