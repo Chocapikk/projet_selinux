@@ -11,8 +11,6 @@ policy_module(mypolicy, 1.0)
 
   type myprogram_file_t;
 
-  init_policy(mypolicy);
-
   allow unconfined_t myprogram_t:file { open read };
 
   allow myprogram_t myprogram_exec_t:file execute;
