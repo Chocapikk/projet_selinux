@@ -1,7 +1,7 @@
 policy_module(mypolicy, 1.0)
 
   require {
-          type unconfined_t;
+          roletype unconfined_t;
           class file { open read };
   }
 
