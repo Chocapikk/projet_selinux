@@ -15,10 +15,10 @@ if ! dpkg -s selinux-utils > /dev/null 2>&1; then
 fi
 
 # Vérifier si SEModule est déjà installé
-if ! dpkg -s semodule-utils > /dev/null 2>&1; then
+if ! dpkg -s policycoreutils > /dev/null 2>&1; then
   # Installer SEModule
   apt-get update
-  apt-get install semodule-utils semodule-utils
+  apt-get install policycoreutils
 fi
 
 # Vérifier si gcc est déjà installé
