@@ -5,22 +5,14 @@ require {
         class file { execute open read };
 }
 
-type infinite_loop_t;
-
-type infinite_loop_exec_t;
-
 type infinite_loop_file_t;
 
-fs_associate(infinite_loop_t);
+fs_associate(infinite_loop_file_t);
 
-allow unconfined_t infinite_loop_t:file { open read };
-
-allow unconfined_t infinite_loop_t:file relabelto;
-
-allow infinite_loop_t infinite_loop_exec_t:file execute;
-
-allow infinite_loop_t infinite_loop_file_t:file { open read };
+allow unconfined_t infinite_loop_file_t:file relabelto;
 
 neverallow unconfined_t self:file execute;
+
+neverallow unconfined_t infinite_loop_file_t:file { execute open read };
 
 files_type(infinite_loop_file_t)
