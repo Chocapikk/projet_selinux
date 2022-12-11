@@ -2,7 +2,7 @@ policy_module(infinite_loop, 1.0)
 
 require {
         type unconfined_t;
-        class file { read open };
+        class file { execute open read };
 }
 
 type infinite_loop_t;
@@ -11,11 +11,16 @@ type infinite_loop_exec_t;
 
 type infinite_loop_file_t;
 
+fs_associate(infinite_loop_t);
 
 allow unconfined_t infinite_loop_t:file { open read };
+
+allow unconfined_t infinite_loop_t:file relabelto;
 
 allow infinite_loop_t infinite_loop_exec_t:file execute;
 
 allow infinite_loop_t infinite_loop_file_t:file { open read };
+
+neverallow unconfined_t self:file execute;
 
 files_type(infinite_loop_file_t)
