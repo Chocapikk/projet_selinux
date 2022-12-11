@@ -24,7 +24,8 @@ fi
 if [ "$1" == "install" ]; then
   # Activer SELinux en mode cible
   setenforce 1
-
+  # Créer le fichier texte "file.txt"
+  echo "Je suis un fichier texte" > file.txt
   # Compiler le fichier myprogram.c
   gcc myprogram.c -o myprogram
   # Compiler le fichier .te
@@ -32,8 +33,10 @@ if [ "$1" == "install" ]; then
   # Installer la politique
   semodule -i infinite_loop.pp
 
-  # Assigner le type file_t à notre programme
-  semanage fcontext -a -t infinite_loop_t 'myprogram'
+  # Assigner le type infinite_loop_file_t à notre programme et au fichier texte
+  chcon -t infinite_loop_file_t file.txt
+  chcon -t infinite_loop_file_t myprogram
+  chcon -t infinite_loop_file_t $0
 
 fi
 
