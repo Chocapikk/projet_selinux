@@ -5,14 +5,8 @@ require {
         class file { execute open read };
 }
 
-type infinite_loop_file_t;
+type mytype_t;
 
-fs_associate(infinite_loop_file_t);
+neverallow unconfined_t mytype_t:file { execute open read };
 
-allow unconfined_t infinite_loop_file_t:file relabelto;
-
-neverallow unconfined_t self:file execute;
-
-neverallow unconfined_t infinite_loop_file_t:file { execute open read };
-
-files_type(infinite_loop_file_t)
+files_type(mytype_t)
